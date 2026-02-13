@@ -1,59 +1,93 @@
+// // Import the CSS file for styling
+// import './App.css'
+// import SignupForm from './components/SignUpForm.jsx';
+
+// // TodoList component - responsible for displaying the list of todos
+// function TodoList() {
+//   // Define the list of todos
+//   const todos = [
+//     {id: 1, text: "Learn JSX"},          // Each todo has an id and text
+//     {id: 2, text: "Understand props"},
+//     {id: 3, text: "Learn React"},
+//     {id: 4, text: "Learn HTML"},
+//     {id: 5, text: "Learn CSS"},
+//   ]
+
+//   return (
+//     <div>
+//       {/* Title of the Todo List */}
+//       <h1>React ToDoS</h1>
+
+//       {/* Unordered list to display each todo */}
+//       <ul>
+//         {/* Iterate over the todos array and render each todo as a list item */}
+//         {todos.map((todo) => {
+//           // Return a list item with a unique 'key' and todo text
+//           return <li key={todo.id}>{todo.text}</li>
+//         })}
+//       </ul>
+//     </div>
+//   );
+// }
+
+// // App component - the main component that renders TodoList
+// function App() {
+//   return (
+//     <div>
+//       {/* Call the TodoList component to display the todo items */}
+//       <TodoList />
+//       <SignupForm/>
+//     </div>
+//   );
+// }
+
+// // Export the App component to be used in index.js
+// export default App;
 
 
-import './App.css'
-import { useState } from 'react';
 
-function Greeting(props) {
-  const { age, name } = props;
+import React from 'react';
+import './App.css';
+import SignupForm from './components/SignUpForm';  // Import SignupForm correctly
+
+// TodoList component - responsible for displaying the list of todos
+function TodoList() {
+  // Define the list of todos
+  const todos = [
+    {id: 1, text: "Learn JSX"},          // Each todo has an id and text
+    {id: 2, text: "Understand props"},
+    {id: 3, text: "Learn React"},
+    {id: 4, text: "Learn HTML"},
+    {id: 5, text: "Learn CSS"},
+  ];
 
   return (
     <div>
-      {age >= 18 ? (
-        <h1>Hello, I am {name}, I am {age} years old. You are an adult.</h1>
-      ) : (
-        <h1>Hello, I am {name}, I am {age} years old. Sorry, you're underage!</h1>
-      )}
+      {/* Title of the Todo List */}
+      <h1>React ToDoS</h1>
+
+      {/* Unordered list to display each todo */}
+      <ul>
+        {/* Iterate over the todos array and render each todo as a list item */}
+        {todos.map((todo) => {
+          // Return a list item with a unique 'key' and todo text
+          return <li key={todo.id}>{todo.text}</li>;
+        })}
+      </ul>
     </div>
   );
 }
 
+// App component - the main component that renders TodoList and SignupForm
 function App() {
-
-  const [userInput , setUserInput] = useState("")
-  // Declare a state variable for showing/hiding the greeting
-  const [showGreeting, setShowGreeting] = useState(true);
-
-  
-
-  // Function to toggle the greeting visibility
-  const toggleGreeting = () => {
-    setShowGreeting((prev) => !prev);  // Toggle the state value
-  };
-  const handleInputchange = (event) =>{
-    setUserInput(event.target.value)
-  }
-
   return (
-    <>
-      <div>
-<div>
-      <input 
-        type="text" 
-        value={userInput} 
-        onChange={handleInputchange} // Update state when the input changes
-        placeholder="Type something..." 
-      />
-      
-      <p>You typed: {userInput}</p> {/* Dynamically render the user input */}
+    <div>
+      {/* Call the TodoList component to display the todo items */}
+      <TodoList />
+      {/* Call the SignupForm component to display the signup form */}
+      <SignupForm />
     </div>
-        
-        <button onClick={toggleGreeting}>Click to {showGreeting ? 'hide' : 'show'} greeting</button>
-        
-        {showGreeting && <Greeting name="Sample-1" age={24} />}
-        <Greeting name="Sample-2" age={17} />
-      </div>
-    </>
   );
 }
 
-export default App;
+export default App;  // Only export App once here
