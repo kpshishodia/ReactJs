@@ -1,73 +1,200 @@
-import React from 'react'
-import { useState } from 'react';
+// import React, { useState } from "react";
 
-const Login = () => {
+// function Login() {
 
-  // State hooks for managing the form input values (name, email, and password)
-  const [email, setEmail] = useState("");  // To store the email input
-  const [password, setPassword] = useState("");  // To store the password input
-  
+//   // State for form inputs
+//   const [username, setUsername] = useState("");   // Stores username input
+//   const [email, setEmail] = useState("");         // Stores email input
+//   const [password, setPassword] = useState("");   // Stores password input
 
-  // Handle form submission
+//   // State for logged-in user data
+//   const [user, setUser] = useState({
+//     username: "",
+//     email: "",
+//     isAuth: false   // Tracks if user is authenticated
+//   });
+
+//   // Function runs when form is submitted
+//   const handleSubmit = (e) => {
+//     e.preventDefault();  // Prevent page reload
+
+//     // Simple validation check
+//     if (!username.trim() || !email.trim() || !password.trim()) {
+//   alert("All fields are required!");
+//   return;
+// }
+
+//     // Save logged-in user data
+//     setUser({
+//       username: username,
+//       email: email,
+//       isAuth: true
+//     });
+
+//     // Print login data in console
+//     console.log("Login Data:", { username, email, password });
+
+//     // Clear form fields after login
+//     setUsername("");
+//     setEmail("");
+//     setPassword("");
+//   };
+
+//   return (
+//     <div>
+//       <h1>Login Form</h1>
+
+//       {/* Login Form */}
+//       <form onSubmit={handleSubmit}>
+        
+//         {/* Username Input */}
+//         <div>
+//           <label htmlFor="username">Username:</label>
+//           <input
+//             type="text"
+//             id="username"
+//             required
+//             value={username}
+//             onChange={(e) => setUsername(e.target.value)} // Updates username state
+//           />
+//         </div>
+
+//         {/* Email Input */}
+//         <div>
+//           <label htmlFor="email">Email:</label>
+//           <input
+//             type="email"
+//             id="email"
+//             required
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)} // Updates email state
+//           />
+//         </div>
+
+//         {/* Password Input */}
+//         <div>
+//           <label htmlFor="password">Password:</label>
+//           <input
+//             type="password"
+//             id="password"
+//             required
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)} // Updates password state
+//           />
+//         </div>
+
+//         {/* Submit Button */}
+//         <button type="submit">Login</button>
+//       </form>
+
+//       {/* Show message only if user is authenticated */}
+//       {user.isAuth && (
+//         <p>{user.username} Logged In.</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Login;
+
+
+
+import React, { useState , useContext } from "react";
+import { AuthContext } from "../AuthContext";
+
+function Login() {
+
+  const { user, setUser } = useContext(AuthContext);
+
+  // State for form inputs
+  const [username, setUsername] = useState("");   // Stores username input
+  const [email, setEmail] = useState("");         // Stores email input
+  const [password, setPassword] = useState("");   // Stores password input
+
+
+
+  // Function runs when form is submitted
   const handleSubmit = (e) => {
-    e.preventDefault();  // Prevent the default form submission (page reload)
+    e.preventDefault();  // Prevent page reload
 
-    // Simple validation to check if all fields are filled
-    if ( !email || !password) {
-      alert("All fields are required!");  // Alert if any field is empty
-      return;
-    }
+    // Simple validation check
+    if (!username.trim() || !email.trim() || !password.trim()) {
+  alert("All fields are required!");
+  return;
+}
 
-    // Log the form data (this is where you would submit to an API later)
-    console.log('Form Submitted', { email, password });
+    // Save logged-in user data
+    setUser({
+      username: username,
+      email: email,
+      isAuth: true
+    });
 
-    // Reset form fields after submission
+    // Print login data in console
+    console.log("Login Data:", { username, email, password });
+
+    // Clear form fields after login
+    setUsername("");
     setEmail("");
-   
     setPassword("");
   };
 
-
   return (
     <div>
- <h1>Login Form</h1> {/* Title of the form */}
-      
-       {/* The form element which triggers handleSubmit on submit */}
-       <form onSubmit={handleSubmit}>
+      <h1>Login Form</h1>
 
-         {/* Email input */}
-         <div>
-           <label htmlFor="email">Email:</label> {/* Label for the email input */}
-           <input 
-             type="email" 
-             id="email" 
-             name="email" 
-             required  // Makes this field required
-             onChange={(e) => setEmail(e.target.value)}  // Updates email state on input change
-             value={email}  // Controlled input, value bound to state
-          />
-        </div>
-
-        {/* Password input */}
+      {/* Login Form */}
+      <form onSubmit={handleSubmit}>
+        
+        {/* Username Input */}
         <div>
-          <label htmlFor="password">Password:</label> {/* Label for the password input */}
-          <input 
-            type="password" 
-            id="password" 
-            name="password" 
-            required  // Makes this field required
-            onChange={(e) => setPassword(e.target.value)}  // Updates password state on input change
-            value={password}  // Controlled input, value bound to state
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Username..."
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)} // Updates username state
           />
         </div>
 
-        {/* Submit button */}
-        <button type="submit">Submit</button>  {/* Button to submit the form */}
-      </form>
-    
+        {/* Email Input */}
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Email.."
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} // Updates email state
+          />
+        </div>
 
+        {/* Password Input */}
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Password.."
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} // Updates password state
+          />
+        </div>
+
+        {/* Submit Button */}
+        <button type="submit">Login</button>
+      </form>
+
+      {/* Show message only if user is authenticated */}
+      {user.isAuth && (
+        <p>{user.username} Logged In.</p>
+      )}
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

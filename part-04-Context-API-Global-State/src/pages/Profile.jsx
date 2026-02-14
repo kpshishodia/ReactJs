@@ -1,9 +1,77 @@
-import React from 'react'
+
+// import React from 'react'
+// import React, { useContext } from "react";
+
+// import { AuthContext } from "../AuthContext";
+
+// const Profile = () => {
+
+//      const { user } = useContext(AuthContext);
+
+//       if (!user.isAuth) {
+//     return <h2>Please login first</h2>; 
+//   }
+//   return (
+//     <div style={{ 
+//       display: "flex", 
+//       justifyContent: "center", 
+//       marginTop: "50px" 
+//     }}>
+//       <div style={{ 
+//         width: "400px", 
+//         padding: "30px", 
+//         border: "1px solid #ddd", 
+//         borderRadius: "10px", 
+//         boxShadow: "0 4px 10px rgba(0,0,0,0.1)" 
+//       }}>
+        
+//         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+//           Profile
+//         </h2>
+
+//         <hr />
+
+//         <div style={{ marginTop: "20px" }}>
+//           <p><strong>Username:</strong> johndoe123</p>
+//           <p><strong>Email:</strong> john@example.com</p>
+//         </div>
+
+//         <button style={{
+//           marginTop: "20px",
+//           width: "100%",
+//           padding: "10px",
+//           backgroundColor: "#1e1e2f",
+//           color: "white",
+//           border: "none",
+//           borderRadius: "5px",
+//           cursor: "pointer"
+//         }}>
+//           Edit Profile
+//         </button>
+
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default Profile
+
+
+import React, { useContext } from "react";
+import { AuthContext } from "../AuthContext";
 
 const Profile = () => {
+
+  // Get user from global context
+  const { user } = useContext(AuthContext);
+
+  // If not logged in
+  if (!user.isAuth) {
+    return <h2>Please login first</h2>;
+  }
+
   return (
-    <div>
-        <div style={{ 
+    <div style={{ 
       display: "flex", 
       justifyContent: "center", 
       marginTop: "50px" 
@@ -16,26 +84,15 @@ const Profile = () => {
         boxShadow: "0 4px 10px rgba(0,0,0,0.1)" 
       }}>
         
-        <div style={{ textAlign: "center", marginBottom: "20px" }}>
-          <img 
-            src="https://via.placeholder.com/100"
-            alt="Profile"
-            style={{ 
-              borderRadius: "50%", 
-              width: "100px", 
-              height: "100px" 
-            }}
-          />
-          <h2 style={{ marginTop: "15px" }}>John Doe</h2>
-          <p style={{ color: "gray" }}>john@example.com</p>
-        </div>
+        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+          Profile
+        </h2>
 
         <hr />
 
         <div style={{ marginTop: "20px" }}>
-          <p><strong>Username:</strong> johndoe123</p>
-          <p><strong>Role:</strong> User</p>
-          <p><strong>Joined:</strong> Jan 2025</p>
+          <p><strong>Username:</strong> {user.username}</p>
+          <p><strong>Email:</strong> {user.email}</p>
         </div>
 
         <button style={{
@@ -53,8 +110,7 @@ const Profile = () => {
 
       </div>
     </div>
-    </div>
   )
 }
 
-export default Profile
+export default Profile;
