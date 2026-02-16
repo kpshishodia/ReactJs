@@ -40,7 +40,7 @@ function Navbar() {
 
                 {/* Logout button */}
                 {/* Clicking logout calls the logout function from AuthContext */}
-                <button onClick={logout} className="btn btn-secondary">
+                <button onClick={logout} className="btn btn-primary">
                   Logout
                 </button>
               </>
