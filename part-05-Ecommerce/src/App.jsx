@@ -4,13 +4,17 @@ import Auth from './pages/Auth'
 import Home from './pages/Home'
 import Checkout from './pages/Checkout'
 import Navbar from './components/Navbar'
+import { ModeContext } from './context/ModeContext'
 
 import './App.css'
 
 function App() {
 
+  const [mode , setMode] = useState("SignUP")
+
   return (
     <>
+    <ModeContext.Provider value={{mode , setMode}}>
       <div className='app'>
         <Navbar/>
         <Routes>
@@ -20,6 +24,7 @@ function App() {
 
         </Routes>
       </div>
+      </ModeContext.Provider>
     </>
   )
 }
