@@ -35,13 +35,39 @@ export function AuthProvider({ children }) {
   // 5️⃣ Signup function
   // - Accepts name and email
   // - Updates user state to mark the user as logged in after signup
-  const signup = (name, email) => {
-    setUser({
-      username: name, // set the provided name
-      email,
-      isAuth: true,
-    });
-  };
+//   const signup = (name, email) => {
+//     setUser({
+//       username: name, // set the provided name
+//       email,
+//       isAuth: true,
+//     });
+ 
+//   };
+
+
+
+const signup = (name, email) => {
+  // 1️⃣ Update current logged-in user
+  setUser({
+    username: name,
+    email,
+    isAuth: true,
+  });
+
+  // 2️⃣ Get existing users from localStorage
+  const existingUsers =
+    JSON.parse(localStorage.getItem("users")) || [];
+
+  // 3️⃣ Create new user object
+  const newUser = { username: name, email };
+
+  // 4️⃣ Add new user to array
+  existingUsers.push(newUser);
+
+  // 5️⃣ Save updated array back to localStorage
+  localStorage.setItem("users", JSON.stringify(existingUsers));
+};
+
 
   // 6️⃣ Logout function
   // - Clears user info and sets isAuth to false
