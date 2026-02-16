@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Route ,Routes } from 'react-router-dom'
-import Auth from './pages/Auth'
+import Login from './pages/Login'
 import Home from './pages/Home'
-import Checkout from './pages/Checkout'
+import Cart from './pages/Cart'
+import Error from './pages/Error'
+import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar'
 
 import './App.css'
@@ -15,8 +17,10 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path='/' element ={<Home/>}/>
-          <Route path='/auth' element ={<Auth/>}/>
-          <Route path='/checkout' element ={<Checkout/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<Error />} />
 
         </Routes>
       </div>
