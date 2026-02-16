@@ -6,22 +6,14 @@ import Cart from './pages/Cart'
 import Error from './pages/Error'
 import SignUp from './pages/SignUp'
 import Navbar from './components/Navbar'
-import { AuthContext } from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 
 import './App.css'
 
 function App() {
-
-   // State for logged-in user data
-  const [user , setUser] = useState({
-    username : "",
-    email : "",
-    isAuth : false
-  })
-
   return (
     <>
-    <AuthContext.Provider value={{user , setUser}}>
+    <AuthProvider>
       <div className='app'>
         <Navbar/>
         <Routes>
@@ -33,7 +25,7 @@ function App() {
 
         </Routes>
       </div>
-      </AuthContext.Provider>
+      </AuthProvider>
     </>
   )
 }

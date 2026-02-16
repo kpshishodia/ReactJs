@@ -1,81 +1,80 @@
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext"; // Import global AuthContext
+import { Link, useNavigate } from "react-router-dom"; // For page navigation and links
 
-import { useState } from "react";
+export default function LoginPage() {
+  // State for controlled form inputs
+  const [email, setEmail] = useState("");        // Store email input
+  const [password, setPassword] = useState("");  // Store password input
 
-export default function Auth() {
-  const [mode, setMode] = useState("signup");
+  // Access login function from AuthContext
+  const { login } = useContext(AuthContext);
+
+  // useNavigate allows us to programmatically redirect the user after login
+  const navigate = useNavigate();
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page refresh
+
+    // Basic validation
+    if (!email || !password) {
+      alert("All fields are required!"); // Alert if any field is empty
+      return;
+    }
+
+    login(email);        // Call AuthContext login function
+    setEmail("");        // Clear email input
+    setPassword("");     // Clear password input
+    navigate("/");       // Redirect user to home page after login
+  };
 
   return (
     <div className="page">
       <div className="container">
         <div className="auth-container">
-          
-          {/* Title */}
-          <h1 className="page-title">
-            {mode === "signup" ? "Sign Up" : "Login"}
-          </h1>
 
-          {/* Form */}
-          <form className="auth-form">
-            
+          {/* Page Title */}
+          <h1 className="page-title">Login</h1>
+
+          {/* Login Form */}
+          <form className="auth-form" onSubmit={handleSubmit}>
+
             {/* Email Field */}
             <div className="form-group">
-              <label className="form-label" htmlFor="email">
-                Email
-              </label>
+              <label>Email</label>
               <input
-                className="form-input"
                 type="email"
-                id="email"
+                className="form-input"
+                value={email}                     // Controlled input
+                onChange={(e) => setEmail(e.target.value)} // Update state on change
                 placeholder="Enter your email"
               />
             </div>
 
             {/* Password Field */}
             <div className="form-group">
-              <label className="form-label" htmlFor="password">
-                Password
-              </label>
+              <label>Password</label>
               <input
-                className="form-input"
                 type="password"
-                id="password"
+                className="form-input"
+                value={password}                  // Controlled input
+                onChange={(e) => setPassword(e.target.value)} // Update state on change
                 placeholder="Enter your password"
               />
             </div>
 
             {/* Submit Button */}
-            <button type="button" className="btn btn-primary btn-large">
-              {mode === "signup" ? "Sign Up" : "Login"}
-            </button>
+            <button type="submit" className="btn btn-primary btn-large">Login</button>
           </form>
 
-          {/* Switch Between Login & Signup */}
+          {/* Link to Signup Page */}
           <div className="auth-switch">
-            {mode === "signup" ? (
-              <p>
-                Already have an account?{" "}
-                <span
-                  className="auth-link"
-                  onClick={() => setMode("login")}
-                  style={{ cursor: "pointer" }}
-                >
-                  Login
-                </span>
-              </p>
-            ) : (
-              <p>
-                Don't have an account?{" "}
-                <span
-                  className="auth-link"
-                  onClick={() => setMode("signup")}
-                  style={{ cursor: "pointer" }}
-                >
-                  Sign Up
-                </span>
-              </p>
-            )}
+            <p>
+              Don't have an account?{" "}
+              <Link to="/signup" className="auth-link">Sign Up</Link>
+            </p>
           </div>
-
         </div>
       </div>
     </div>
