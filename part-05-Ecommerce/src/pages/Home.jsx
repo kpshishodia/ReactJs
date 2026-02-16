@@ -1,5 +1,7 @@
 import React from 'react'
 import { getProducts } from '../Data/Products'
+import ProductCard from '../components/ProductCard'
+// import { Link } from 'react-router-dom'
 
 const Home = () => {
   // Get all products from data file
@@ -21,24 +23,30 @@ const Home = () => {
         <h2 className='page-title'>Our Products</h2>
 
         {/* Products Grid */}
-        <div className='products-grid'>
+        <div className='product-grid'>
 
           {/* Loop through products array */}
           {products.map((product) => {
             return (
-              // Each product card
-              <div className='product-card' key={product.id}>
 
-                {/* Product Image */}
-                <img src={product.image} alt={product.name} />
+                <ProductCard product ={product} key={product.id} />
+            //   // Each product card
+            //   <div className='product-card' key={product.id}>
 
-                {/* Product Info */}
-                <div className='product-info'>
-                  <h3>{product.name}</h3>
-                  <p>${product.price}</p>
-                </div>
+            //     {/* Product Image */}
+            //     <img className='product-card-image' src={product.image} alt={product.name} />
 
-              </div>
+            //     {/* Product Info */}
+            //     <div className='product-card-content'>
+            //       <h3 className='product-card-name'>{product.name}</h3>
+            //       <p className='product-card-price'>${product.price}</p>
+            //     </div>
+            //     <div className='product-card-actions'>
+            //         <Link className='btn btn-secondary'>View Details</Link>
+            //         <button className='btn btn-primary'>Add to Cart</button>
+            //     </div>
+
+            //   </div>
             )
           })}
 
