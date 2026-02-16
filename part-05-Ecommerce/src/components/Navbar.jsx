@@ -1,6 +1,57 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
- function Navbar() {
+//  function Navbar() {
+//   return (
+//     <nav className="navbar">
+//       <div className="navbar-container">
+//         <Link to="/" className="navbar-brand">
+//           ShopHub
+//         </Link>
+
+//         <div className="navbar-links">
+//           <Link to="/" className="navbar-link">
+//             Home
+//           </Link>
+//           <Link to="/checkout" className="navbar-link">
+//             Cart
+//           </Link>
+//         </div>
+
+//         <div className="navbar-auth">
+//           <div className="navbar-auth-links">
+//             <Link to="/auth" className="btn btn-secondary">
+//               Login
+//             </Link>
+//             <Link to="/auth" className="btn btn-primary">
+//               Signup
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </nav>
+//   );
+// }
+
+// export default Navbar
+
+
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { ModeContext } from "../context/ModeContext";
+
+function Navbar() {
+  const { user, setUser } = useContext(AuthContext);
+  const { setMode } = useContext(ModeContext);
+
+  const handleLogout = () => {
+    setUser({
+      username: "",
+      email: "",
+      isAuth: false
+    });
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -18,18 +69,41 @@ import { Link } from "react-router-dom";
         </div>
 
         <div className="navbar-auth">
-          <div className="navbar-auth-links">
-            <Link to="/auth" className="btn btn-secondary">
-              Login
-            </Link>
-            <Link to="/auth" className="btn btn-primary">
-              Signup
-            </Link>
-          </div>
+          {!user.isAuth ? (
+            // 🔹 Not logged in
+            <div className="navbar-auth-links">
+              <Link
+                to="/auth"
+                className="btn btn-secondary"
+                onClick={() => setMode("login")}
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/auth"
+                className="btn btn-primary"
+                onClick={() => setMode("signup")}
+              >
+                Signup
+              </Link>
+            </div>
+          ) : (
+            // 🔹 Logged in
+            <div className="navbar-auth-links">
+              <span>Hello, {user.username}</span>
+              <button
+                className="btn btn-primary"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </nav>
   );
 }
 
-export default Navbar
+export default Navbar;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const ProductCard = ({product}) => {
   return (
     <div>
-        // Each product card
+        {/*  Each product card */}
                       <div className='product-card' >
         
                         {/* Product Image */}
