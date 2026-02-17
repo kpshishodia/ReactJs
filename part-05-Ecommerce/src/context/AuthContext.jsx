@@ -155,7 +155,7 @@ export function AuthProvider({ children }) {
       JSON.parse(localStorage.getItem("users")) || [];
 
     // 3️⃣ Check if email already exists
-    const userExists = existingUsers.find((u) => u.email === email);
+    const userExists = existingUsers.find((user) => user.email === email);
 
     if (userExists) {
       alert("User already exists!");
@@ -197,7 +197,7 @@ export function AuthProvider({ children }) {
 
     // find user with matching email + password
     const foundUser = existingUsers.find(
-      (u) => u.email === email && u.password === password
+      (user) => user.email === email && user.password === password
     );
 
     if (!foundUser) {
