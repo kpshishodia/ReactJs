@@ -116,7 +116,7 @@ Purpose:
 • Redirect to home
 */
 
-export default function SignupPage() {
+const SignUp = () => {
   // Local form state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -208,3 +208,6 @@ export default function SignupPage() {
     </div>
   );
 }
+
+
+export default  SignUp

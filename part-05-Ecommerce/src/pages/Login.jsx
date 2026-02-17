@@ -99,7 +99,7 @@ Purpose:
 • Redirect to home page if success
 */
 
-export default function LoginPage() {
+const Login = () => {
   // Local state for form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -179,3 +179,6 @@ export default function LoginPage() {
     </div>
   );
 }
+
+
+export default  Login
