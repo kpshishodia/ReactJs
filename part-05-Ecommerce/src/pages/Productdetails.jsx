@@ -18,7 +18,7 @@ const Productdetails = () => {
   const { id } = useParams();
 
   // 🔹 Debug log to confirm id is coming correctly
-  console.log('param id :', id);
+  console.log('param id :', id); 
 
 
   // 🔹 State to store the found product
@@ -90,6 +90,8 @@ const Productdetails = () => {
             <p className="product-detail-description">
               {product.description}
             </p>
+
+            <button className='btn btn-primary'>Add to Cart</button>
 
           </div>
         </div>
