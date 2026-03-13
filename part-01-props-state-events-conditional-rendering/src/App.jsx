@@ -9,9 +9,9 @@ function Greeting(props) {
   return (
     <div>
       {age >= 18 ? (
-        <h1>Hello, I am {name}, I am {age} years old. You are an adult.</h1>
+        <h1>Hello, {name}, You are  {age} years old. You are an adult.</h1>
       ) : (
-        <h1>Hello, I am {name}, I am {age} years old. Sorry, you're underage!</h1>
+        <h1>Hello, {name}, You are  {age} years old. Sorry, you're underage!</h1>
       )}
     </div>
   );
