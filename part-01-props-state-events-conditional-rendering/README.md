@@ -1,3 +1,84 @@
+# Part 01 — Props, State, Events & Conditional Rendering (React + Vite)
+
+This project is a small React practice app focused on core fundamentals:
+**props**, **state**, **event handling**, and **conditional rendering**.
+
+## What’s inside
+
+- **Props demo**: `Greeting` component receives `name` and `age`
+- **Conditional rendering**: renders different messages based on age (`age >= 18`)
+- **State + events**:
+  - Controlled input (`useState`) that echoes what you type
+  - Toggle button to show/hide a greeting component
+
+## Tech stack
+
+- React
+- Vite
+- ESLint
+
+## Getting started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm (or an equivalent package manager)
+
+### Install
+
+```bash
+npm install
+```
+
+### Run the app (development)
+
+```bash
+npm run dev
+```
+
+Then open the URL shown in your terminal (typically `http://localhost:5173`).
+
+## Available scripts
+
+- **Start dev server**:
+
+```bash
+npm run dev
+```
+
+- **Production build**:
+
+```bash
+npm run build
+```
+
+- **Preview production build locally**:
+
+```bash
+npm run preview
+```
+
+- **Lint**:
+
+```bash
+npm run lint
+```
+
+## Project structure
+
+```text
+part-01-props-state-events-conditional-rendering/
+  src/
+    App.jsx
+  package.json
+  README.md
+```
+
+## Notes
+
+- The main learning examples live in `src/App.jsx`.
+- This repo contains multiple parts; this README covers **only** `part-01-props-state-events-conditional-rendering`.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
