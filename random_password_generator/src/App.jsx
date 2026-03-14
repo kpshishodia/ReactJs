@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 function App() {
   // ----------------------------
@@ -11,7 +11,10 @@ function App() {
   const [specialCharsAllowed, setSpecialCharsAllowed] = useState(true);
   const [password, setPassword] = useState(""); // Generated password
   const [error, setError] = useState("")
+  const [copied, setCopied] = useState(false);
 
+
+  const passwordRef = useRef(null)  
   // ----------------------------
   // Password generation function
   // ----------------------------
@@ -41,6 +44,12 @@ function App() {
   setError("");
 }
 
+if (length < 8) {
+  setError("Password length must be at least 8 characters.");
+  setPassword("");
+  return;
+}
+
       // ----------------------------
       // Loop 'length' times to pick random characters
       // ----------------------------
@@ -54,6 +63,7 @@ function App() {
       // Set password state
       setPassword(gerneratedPassword);
       console.log("generated password:", gerneratedPassword);
+      
 
     } catch (error) {
 
@@ -64,8 +74,28 @@ function App() {
       setPassword("Error generating password");
 
     }
+
+  
   };
 
+
+
+const copyPassword = async () => {
+  try {
+    await navigator.clipboard.writeText(password);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  } catch (error) {
+    console.error("Copy failed:", error);
+  }
+};
+
+// const copyPassword = () =>{
+//   console.log("copy")
+// }
 
  
   // ----------------------------
@@ -116,10 +146,14 @@ function App() {
               className="bg-white text-black outline-none px-3 py-2 w-[300px] rounded text-xl my-2"
               id="passBox"
               disabled
+              ref={passwordRef}
             />
-            <span className="absolute top-4 right-2 text-black text-2xl cursor-pointer z-10">
-              
-            </span>
+   <span
+  onClick={copyPassword}
+  className="absolute top-4 right-2 text-black text-2xl cursor-pointer z-10"
+>
+  {copied ? "Copied!" : "Copy"}
+</span>
           </div>
           {error && (
   <p className="text-red-700 text-sm mt-1">
