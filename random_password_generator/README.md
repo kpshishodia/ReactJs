@@ -1,36 +1,44 @@
-# Part 01 — Props, State, Events & Conditional Rendering (React + Vite)
+## Password Generator (React + Vite)
 
-This project is a small React practice app focused on core fundamentals:
-**props**, **state**, **event handling**, and **conditional rendering**.
+An interactive **random password generator** built with React and Vite. It lets you quickly create secure passwords with customizable length and character options, and copy them with a single click.
 
-## What’s inside
+### Live Demo
 
-- **Props demo**: `Greeting` component receives `name` and `age`
-- **Conditional rendering**: renders different messages based on age (`age >= 18`)
-- **State + events**:
-  - Controlled input (`useState`) that echoes what you type
-  - Toggle button to show/hide a greeting component
+- **Production URL**: [`https://passwordgenerator-psi-cyan.vercel.app/`](https://passwordgenerator-psi-cyan.vercel.app/)
 
-## Tech stack
+### Features
 
-- React
-- Vite
-- ESLint
+- **Customizable length**: Adjust password length with a slider.
+- **Character types**:
+  - Include **lowercase letters** (a–z)
+  - Include **uppercase letters** (A–Z)
+  - Include **numbers** (0–9)
+  - Include **symbols** (`!@#$%^&*` and similar)
+- **One-click copy**: Copy the generated password to your clipboard.
+- **Instant regeneration**: Generate a new password anytime with a button click.
+- **Clean, modern UI**: Gradient background and card-style layout for a polished look.
 
-## Getting started
+### Tech Stack
 
-### Prerequisites
+- **Frontend**: React (with hooks)
+- **Build Tool**: Vite
+- **Styling**: CSS (custom styles)
+- **Deployment**: Vercel
+
+### Getting Started
+
+#### Prerequisites
 
 - Node.js (LTS recommended)
-- npm (or an equivalent package manager)
+- npm or another Node package manager
 
-### Install
+#### Installation
 
 ```bash
 npm install
 ```
 
-### Run the app (development)
+#### Run in Development
 
 ```bash
 npm run dev
@@ -38,60 +46,30 @@ npm run dev
 
 Then open the URL shown in your terminal (typically `http://localhost:5173`).
 
-## Available scripts
-
-- **Start dev server**:
-
-```bash
-npm run dev
-```
-
-- **Production build**:
+#### Build for Production
 
 ```bash
 npm run build
 ```
 
-- **Preview production build locally**:
+#### Preview Production Build
 
 ```bash
 npm run preview
 ```
 
-- **Lint**:
-
-```bash
-npm run lint
-```
-
-## Project structure
+### Project Structure (simplified)
 
 ```text
-part-01-props-state-events-conditional-rendering/
+random_password_generator/
   src/
-    App.jsx
+    App.jsx          # Main password generator UI
+    main.jsx         # React entry point
+  public/
   package.json
   README.md
 ```
 
-## Notes
+### License
 
-- The main learning examples live in `src/App.jsx`.
-- This repo contains multiple parts; this README covers **only** `part-01-props-state-events-conditional-rendering`.
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project is open source and available under the MIT License (or update this section to your preferred license).
