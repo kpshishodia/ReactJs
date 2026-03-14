@@ -6,45 +6,68 @@ function App() {
   // ----------------------------
   const [length, setLength] = useState(8); // Password length
   const [numbersAllowed, setNumbersAllowed] = useState(true);
-  const [lowerCaseAlphabetsAllowed, setLowerCaseAlphabetsAllowed] = useState(true);
+  const [lowerCaseAlphabetsAllowed, setLowerCaseAlphabetsAllowed] = useState(true); 
   const [upperCaseAlphabetsAllowed, setUpperCaseAlphabetsAllowed] = useState(true);
   const [specialCharsAllowed, setSpecialCharsAllowed] = useState(true);
   const [password, setPassword] = useState(""); // Generated password
+  const [error, setError] = useState("")
 
   // ----------------------------
   // Password generation function
   // ----------------------------
   const paswordhandler = () => {
-    let gerneratedPassword = "";
+    try {
 
-    // Character sets
-    let lowerChars = "abcdefghijklmnopqrstuvwxyz";
-    let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let allNumbers = "0123456789";
-    let specialChars = "~!@#$%^&*";
+      let gerneratedPassword = "";
 
-    // Build the pool of allowed characters
-    let str = "";
-    if (numbersAllowed) str += allNumbers;
-    if (lowerCaseAlphabetsAllowed) str += lowerChars;
-    if (upperCaseAlphabetsAllowed) str += upperChars;
-    if (specialCharsAllowed) str += specialChars;
+      // Character sets
+      let lowerChars = "abcdefghijklmnopqrstuvwxyz";
+      let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let allNumbers = "0123456789";
+      let specialChars = "~!@#$%^&*";
 
-    // ----------------------------
-    // Loop 'length' times to pick random characters
-    // ----------------------------
-    for (let i = 0; i < length; i++) {
-      // Generate random index within str
-      let randomIndex = Math.floor(Math.random() * str.length);
-      // Append the character at that index to password
-      gerneratedPassword += str.charAt(randomIndex);
+      // Build the pool of allowed characters
+      let str = "";
+      if (numbersAllowed) str += allNumbers;
+      if (lowerCaseAlphabetsAllowed) str += lowerChars;
+      if (upperCaseAlphabetsAllowed) str += upperChars;
+      if (specialCharsAllowed) str += specialChars;
+
+  if (str.length === 0) {
+  setError("Select at least one character type");
+  setPassword("");
+  return;
+} else {
+  setError("");
+}
+
+      // ----------------------------
+      // Loop 'length' times to pick random characters
+      // ----------------------------
+      for (let i = 0; i < length; i++) {
+        // Generate random index within str
+        let randomIndex = Math.floor(Math.random() * str.length);
+        // Append the character at that index to password
+        gerneratedPassword += str.charAt(randomIndex);
+      }
+
+      // Set password state
+      setPassword(gerneratedPassword);
+      console.log("generated password:", gerneratedPassword);
+
+    } catch (error) {
+
+      // Error handling
+      console.error("Error generating password:", error);
+
+      // Fallback UI state
+      setPassword("Error generating password");
+
     }
-
-    // Set password state
-    setPassword(gerneratedPassword);
-    console.log("generated password:", gerneratedPassword);
   };
 
+
+ 
   // ----------------------------
   // useCallback to memoize the function
   // Hook is at top level of component
@@ -58,18 +81,19 @@ function App() {
     setPassword,
   ]);
 
-    // useEffect to run passwordGenerator automatically whenever length changes
   // ----------------------------
-useEffect(() => {
-  passwordGenerator();
-}, [
-  length,
-  numbersAllowed,
-  lowerCaseAlphabetsAllowed,
-  upperCaseAlphabetsAllowed,
-  specialCharsAllowed,
-  passwordGenerator
-]);
+  // useEffect to run passwordGenerator automatically whenever length changes
+  // ----------------------------
+  useEffect(() => {
+    passwordGenerator();
+  }, [
+    length,
+    numbersAllowed,
+    lowerCaseAlphabetsAllowed,
+    upperCaseAlphabetsAllowed,
+    specialCharsAllowed,
+    passwordGenerator
+  ]);
 
   return (
     <>
@@ -94,9 +118,14 @@ useEffect(() => {
               disabled
             />
             <span className="absolute top-4 right-2 text-black text-2xl cursor-pointer z-10">
-              content_copy
+              
             </span>
           </div>
+          {error && (
+  <p className="text-red-700 text-sm mt-1">
+    {error}
+  </p>
+)}
 
           {/* Range slider for password length */}
           <input
