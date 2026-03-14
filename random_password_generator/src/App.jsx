@@ -1,9 +1,35 @@
 import './App.css'
-import { useState } from 'react';
+import { useState , useCallback} from 'react';
 
 function App() {
 
-  const [color, setColor] = useState("yellow")
+  const [length, setLength] = useState(5)
+  const [numbersAllowed, setNumbersAllowed] = useState(false)
+  const [lowerCaseAlphabetsAllowed, setLowerCaseAlphabetsAllowed] = useState(false)
+  const [upperCaseAlphabetsAllowed, setUpperCaseAlphabetsAllowed] = useState(false)
+
+  const [specialCharsAllowed, setSpecialCharsAllowed] = useState(false)
+  const [password, setPassword] = useState("")
+
+
+  const paswordhandler = () =>{
+    let gerneratedPassword = ""
+    let lowerChars = "abcdefghijklmnopqrstuvwxyz";
+    let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let allNumbers = "0123456789";
+    let specialChars = "~!@#$%^&*";
+    let str = ""
+
+    if(numbersAllowed) str += allNumbers
+    if(lowerCaseAlphabetsAllowed) str += lowerChars
+    if(upperCaseAlphabetsAllowed) str += upperChars
+    if(specialCharsAllowed) str += specialChars
+    
+
+  }
+  const passwordGenerator = useCallback(() =>{},[length,numbersAllowed,lowerCaseAlphabetsAllowed, upperCaseAlphabetsAllowed,specialCharsAllowed,setPassword])
+
+
 
  
 
